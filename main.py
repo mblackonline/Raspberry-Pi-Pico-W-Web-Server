@@ -12,17 +12,10 @@ rp2.country('US')
 
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
-# If you need to disable powersaving mode
-# wlan.config(pm=0xa11140)
 
 # See the MAC address in the wireless chip OTP
 mac = ubinascii.hexlify(network.WLAN().config('mac'), ':').decode()
 print('mac = ' + mac)
-
-# Other things to query
-# print(wlan.config('channel'))
-# print(wlan.config('essid'))
-# print(wlan.config('txpower'))
 
 # Load login data from different file for safety reasons
 ssid = wifi_secrets['ssid']
@@ -47,16 +40,6 @@ def blink_onboard_led(num_blinks):
         time.sleep(0.2)
         led.off()
         time.sleep(0.2)
-
-# Handle connection error
-# Error meanings
-# 0  Link Down
-# 1  Link Join
-# 2  Link NoIp
-# 3  Link Up
-# -1 Link Fail
-# -2 Link NoNet
-# -3 Link BadAuth
 
 wlan_status = wlan.status()
 blink_onboard_led(wlan_status)
@@ -114,8 +97,4 @@ while True:
     except OSError as e:
         cl.close()
         print('Connection closed')
-
-# Make GET request
-#request = requests.get('http://www.google.com')
-#print(request.content)
-#request.close()
+        
