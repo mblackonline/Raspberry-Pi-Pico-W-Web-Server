@@ -4,16 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raspberry Pi Pico W (version 1)</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <main>
         <article>
-            <h1 style="color: black;"><strong>Raspberry Pi Pico W Webserver</strong></h1>
+            <h1 style="color: black; font-weight: bold;">Raspberry Pi Pico W Webserver</h1>
             <h2>Control LED Using Webserver</h2>
-            <p><a href="https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#picow-technical-specification">Raspberry Pi Pico W Documentation</a></p>
-            <a href="?led=on"><button class="button">Click to Turn LED On</button></a>&nbsp;
-            <a href="?led=off"><button class="button button3">Click to Turn LED Off</button></a>
+            <a href="?led=on">
+                <button style="background-color: #5cb85c; border: 3px solid; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;">
+                    Click to Turn LED On
+                </button>
+            </a>
+            <a href="?led=off">
+                <button style="background-color: #d9534f; border: 3px solid; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;">
+                    Click to Turn LED Off
+                </button>
+            </a>
+            <br><br>
+            <p>
+                <a href="https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#picow-technical-specification">
+                    Click here to read the official Raspberry Pi Pico W Documentation.
+                </a>
+            </p>
         </article>
     </main>
 </body>
