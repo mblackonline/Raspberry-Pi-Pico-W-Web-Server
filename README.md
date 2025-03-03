@@ -202,3 +202,8 @@ A special thanks to [DIY Project Lab](https://diyprojectslab.com/) for their exc
    - Load the `main.py` file in Thonny.
    - Click the green "Run" button or press F5 to execute the script. This will start the web server.
    - Navigate to the IP address shown in the Thonny terminal output to control the LED via the web. 
+
+
+   ## Acknowledgment
+
+This README was created with the assistance of AI.
