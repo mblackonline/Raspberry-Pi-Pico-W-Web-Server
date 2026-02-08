@@ -91,6 +91,8 @@ A special thanks to [DIY Project Lab](https://diyprojectslab.com/) for their exc
     </html>
     ```
 
+2. In Thonny, save `index.html` to the root of the Raspberry Pi Pico filesystem (same location as `main.py`).
+
 ## Running the Web Server
 
 1. Create a `main.py` file to set up the web server and control the LED:
@@ -199,6 +201,7 @@ A special thanks to [DIY Project Lab](https://diyprojectslab.com/) for their exc
 
 2. **Run the code in Thonny**:
    - Connect your Pico W to your computer and open Thonny.
+   - Save `main.py`, `wifi_secrets.py`, and `index.html` to the Pico root filesystem.
    - Load the `main.py` file in Thonny.
    - Click the green "Run" button or press F5 to execute the script. This will start the web server.
    - Navigate to the IP address shown in the Thonny terminal output to control the LED via the web. 
