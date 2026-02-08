@@ -55,13 +55,29 @@ A special thanks to [DIY Project Lab](https://diyprojectslab.com/) for their exc
 
 ## Storing WiFi Credentials
 
-1. Create a file named `wifi_secrets.py` to store your WiFi login credentials. Paste the following code into it, updating it with your credentials:
+1. Use the committed template file `wifi_secrets.py.example`:
 
     ```python
     wifi_secrets = {
         'ssid': 'WiFiNetwork',
         'Password': 'YourPassword'
     }
+    ```
+
+2. Copy it to a real local secrets file:
+
+    ```bash
+    cp wifi_secrets.py.example wifi_secrets.py
+    ```
+
+3. Edit `wifi_secrets.py` with your real credentials.
+
+4. Do not commit real WiFi credentials to GitHub. Keep `wifi_secrets.py` local to your Pico device or local machine only.
+
+5. Keep `wifi_secrets.py` in `.gitignore` to prevent accidental commits:
+
+    ```gitignore
+    wifi_secrets.py
     ```
 
 ## Creating the Web Interface
@@ -102,10 +118,25 @@ A special thanks to [DIY Project Lab](https://diyprojectslab.com/) for their exc
     import network
     import ubinascii
     import machine
-    import urequests as requests
     import time
-    from wifi_secrets import wifi_secrets
     import socket
+
+    try:
+        from wifi_secrets import wifi_secrets
+    except ImportError:
+        raise RuntimeError(
+            'Missing wifi_secrets.py. Copy wifi_secrets.py.example to wifi_secrets.py and set your Wi-Fi credentials.'
+        )
+
+    def get_wifi_credentials():
+        try:
+            ssid = wifi_secrets['ssid']
+            pw = wifi_secrets['Password']
+        except KeyError:
+            raise RuntimeError(
+                "wifi_secrets.py must define wifi_secrets with 'ssid' and 'Password' keys."
+            )
+        return ssid, pw
 
     # Set country to avoid possible errors
     rp2.country('US')
@@ -118,8 +149,7 @@ A special thanks to [DIY Project Lab](https://diyprojectslab.com/) for their exc
     print('mac = ' + mac)
 
     # Load login data from different file for safety reasons
-    ssid = wifi_secrets['ssid']
-    pw = wifi_secrets['Password']
+    ssid, pw = get_wifi_credentials()
 
     wlan.connect(ssid, pw)
 

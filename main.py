@@ -2,10 +2,26 @@ import rp2
 import network
 import ubinascii
 import machine
-import urequests as requests
 import time
-from wifi_secrets import wifi_secrets
 import socket
+
+try:
+    from wifi_secrets import wifi_secrets
+except ImportError:
+    raise RuntimeError(
+        'Missing wifi_secrets.py. Copy wifi_secrets.py.example to wifi_secrets.py and set your Wi-Fi credentials.'
+    )
+
+
+def get_wifi_credentials():
+    try:
+        ssid = wifi_secrets['ssid']
+        pw = wifi_secrets['Password']
+    except KeyError:
+        raise RuntimeError(
+            "wifi_secrets.py must define wifi_secrets with 'ssid' and 'Password' keys."
+        )
+    return ssid, pw
 
 # Set country to avoid possible errors
 rp2.country('US')
@@ -18,8 +34,7 @@ mac = ubinascii.hexlify(network.WLAN().config('mac'), ':').decode()
 print('mac = ' + mac)
 
 # Load login data from different file for safety reasons
-ssid = wifi_secrets['ssid']
-pw = wifi_secrets['Password']
+ssid, pw = get_wifi_credentials()
 
 wlan.connect(ssid, pw)
 
